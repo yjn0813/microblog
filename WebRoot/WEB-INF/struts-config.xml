@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<form-beans >
+  	<form-bean name="registForm" type="struts.form.RegistForm" />
+    <form-bean name="loginForm" type="struts.form.LoginForm" />
+	<form-bean name="memberAddForm" type="struts.form.MemberAddForm" />
+    <form-bean name="newArticleForm" type="struts.form.NewArticleForm" />
+    <form-bean name="updateMemberDetailForm" type="struts.form.UpdateMemberDetailForm" />
+    <form-bean name="searchForm" type="struts.form.SearchForm" />
+    <form-bean name="updateNoticeboardForm" type="struts.form.UpdateNoticeboardForm" />
+    <form-bean name="followForm" type="struts.form.FollowForm" />
+    <form-bean name="commentsAddForm" type="struts.form.CommentsAddForm" />
+    <form-bean name="addForwardDetailForm" type="struts.form.AddForwardDetailForm" />
+    <form-bean name="followstatusForm" type="struts.form.FollowstatusForm" />
+  </form-beans>
+		<global-exceptions />
+		<global-forwards />
+  <action-mappings>
+  <action
+      attribute="registForm"
+      name="registForm"
+      path="/regist"
+      scope="request"
+      type="struts.action.RegistAction"
+      validate="false">
+      <forward name="Fail" path="/Regist.jsp" />
+      <forward name="Success" path="/MemberAdd.jsp" />
+    </action>
+     <action
+      attribute="loginForm"
+      name="loginForm"
+      path="/login"
+      scope="request"
+      type="struts.action.LoginAction"
+      validate="true"
+      input="/Login.jsp">
+      <forward name="Fail" path="/Login.jsp" />
+      <forward name="Success" path="/Homepage.jsp" />
+      <forward name="Admin" path="/AdminMain.jsp" />
+    </action>
+    <action
+      attribute="memberAddForm"
+      name="memberAddForm"
+      path="/memberAdd"
+      scope="request"
+      type="struts.action.MemberAddAction"
+      validate="false">
+      <forward name="Fail" path="/Regist.jsp" />
+      <forward name="Success" path="/Login.jsp" />
+    </action>
+    <action
+      path="/memberDetail"
+      type="struts.action.MemberDetailAction"
+      validate="false">
+      <forward name="success" path="/MemberDetail.jsp" />
+    </action>
+    <action
+      attribute="newArticleForm"
+      name="newArticleForm"
+      path="/newArticle"
+      type="struts.action.NewArticleAction"
+      validate="false">
+      <forward name="success" path="/My.jsp" />
+    </action>
+    <action
+      path="/queryMyArticles"
+      type="struts.action.QueryMyArticlesAction"
+      validate="false">
+      <forward name="success" path="/QueryMyArticles.jsp" />
+    </action>
+    <action
+      attribute="updateMemberDetailForm"
+      name="updateMemberDetailForm"
+      path="/updateMemberDetail"
+      scope="request"
+      type="struts.action.UpdateMemberDetailAction">
+      <forward name="fail" path="/MemberDetail.jsp" />
+      <forward name="success" path="/Homepage.jsp" />
+    </action>
+    <action
+      attribute="searchForm"
+      name="searchForm"
+      path="/search"
+      type="struts.action.SearchAction"
+      validate="false">
+      <forward name="success" path="/SearchResults.jsp" />
+    </action>
+    <action
+      path="/queryUsers"
+      type="struts.action.QueryUsersAction"
+      validate="false">
+      <forward name="query" path="/QueryUsers.jsp" />
+      <forward name="delete" path="/DeleteUser.jsp" />
+    </action>
+    <action
+      path="/detailUser"
+      type="struts.action.DetailUserAction"
+      validate="false">
+      <forward name="detail" path="/DetailUser.jsp" />
+    </action>
+    <action
+      path="/deleteUser"
+      type="struts.action.DeleteUserAction"
+      validate="false">
+      <forward name="fail" path="/queryUsers.do" />
+      <forward name="success" path="/queryUsers.do?flag=delUser" />
+    </action>
+    <action
+      path="/queryAllArticles"
+      type="struts.action.QueryAllArticlesAction"
+      validate="false">
+      <forward name="query" path="/QueryAllArticles.jsp" />
+      <forward name="delete" path="/AdminDeleteArticle.jsp" />
+    </action>
+    <action
+      path="/adminDeleteArticle"
+      type="struts.action.AdminDeleteArticleAction"
+      validate="false">
+      <forward name="success" path="/queryAllArticles.do" />
+    </action>
+    <action
+      attribute="updateNoticeboardForm"
+      name="updateNoticeboardForm"
+      path="/updateNoticeboard"
+      scope="request"
+      type="struts.action.UpdateNoticeboardAction">
+      <forward name="fail" path="/UpdateNoticeboard.jsp" />
+      <forward name="success" path="/detailNoticeboard.do?notice_id=1" />
+    </action>
+    <action
+      path="/detailNoticeboard"
+      type="struts.action.DetailNoticeboardAction"
+      validate="false">
+      <forward name="update" path="/UpdateNoticeboard.jsp" />
+      <forward name="detail" path="/DetailNoticeboard.jsp" />
+    </action>
+    <action
+      attribute="followForm"
+      name="followForm"
+      path="/follow"
+      scope="request"
+      type="struts.action.FollowAction">
+      <forward name="success" path="/search.do" />
+    </action>
+    <action
+      path="/queryFollowsArticles"
+      type="struts.action.QueryFollowsArticlesAction"
+      validate="false">
+      <forward name="success" path="/QueryFollowsArticles.jsp" />
+    </action>
+    <action
+      path="/exit"
+      type="struts.action.ExitAction"
+      validate="false">
+      <forward name="success" path="/Login.jsp" />
+    </action>
+    <action
+      attribute="commentsAddForm"
+      name="commentsAddForm"
+      path="/addComments"
+      scope="request"
+      type="struts.action.AddCommentsAction">
+      <forward name="success" path="/confirmComments.do" />
+    </action>
+    <action
+      path="/confirmComments"
+      type="struts.action.ConfirmCommentsAction"
+      validate="false">
+      <forward name="query" path="/CommentsConfirm.jsp" />
+    </action>
+    <action
+      path="/deleteArticle"
+      type="struts.action.DeleteArticleAction"
+      validate="false">
+      <forward name="success" path="/queryMyArticles.do" />
+    </action>
+    <action
+      path="/queryFollows"
+      type="struts.action.QueryFollowsAction"
+      validate="false">
+      <forward name="success" path="/MyFollows.jsp" />
+    </action>
+    <action
+      path="/queryFans"
+      type="struts.action.QueryFansAction"
+      validate="false">
+      <forward name="success" path="/MyFans.jsp" />
+    </action>
+    <action
+      path="/deleteFollow"
+      type="struts.action.DeleteFollowAction"
+      validate="false">
+      <forward name="success" path="/queryFollows.do" />
+    </action>
+    <action
+      path="/deleteFan"
+      type="struts.action.DeleteFanAction"
+      validate="false">
+      <forward name="success" path="/queryFans.do" />
+    </action>
+    <action
+      path="/queryRecievedComments"
+      type="struts.action.QueryRecievedCommentsAction"
+      validate="false">
+      <forward name="success" path="/QueryRecievedComments.jsp" />
+    </action>
+    <action
+      path="/queryMyComments"
+      type="struts.action.QueryMyCommentsAction"
+      validate="false">
+      <forward name="success" path="/QueryMyComments.jsp" />
+    </action>
+    <action
+      path="/deleteComments"
+      type="struts.action.DeleteCommentsAction"
+      validate="false">
+      <forward name="success" path="/queryMyComments.do" />
+    </action>
+    <action
+      path="/articleDetail"
+      type="struts.action.ArticleDetailAction"
+      validate="false">
+      <forward name="success" path="/AddForwardDetail.jsp" />
+    </action>
+    <action
+      attribute="addForwardDetailForm"
+      name="addForwardDetailForm"
+      path="/addForward"
+      scope="request"
+      type="struts.action.AddForwardAction"
+      validate="false">
+      <forward name="fail" path="/AddForwardDetail.jsp" />
+      <forward name="success" path="/ForwardSuccess.jsp" />
+    </action>
+    <action
+      path="/queryForwardArticles"
+      type="struts.action.QueryForwardArticlesAction"
+      validate="false">
+      <forward name="success" path="/QueryForwardArticles.jsp" />
+    </action>
+    <action
+      path="/deleteForward"
+      type="struts.action.DeleteForwardAction"
+      validate="false">
+      <forward name="success" path="/queryForwardArticles.do" />
+    </action>
+    <action
+      path="/queryAtArticles"
+      type="struts.action.QueryAtArticlesAction"
+      validate="false">
+      <forward name="success" path="/QueryAtArticles.jsp" />
+    </action>
+    <action path="/chinese" 
+    type="struts.action.ChineseAction"
+    validate="false">
+      <forward name="success" path="/Login.jsp" />
+    </action>
+    <action
+      path="/japanese"
+      type="struts.action.JapaneseAction"
+      validate="false">
+      <forward name="success" path="/Login.jsp" />
+    </action>
+    <action
+      path="/queryAllComments"
+      type="struts.action.QueryAllCommentsAction"
+      validate="false">
+      <forward name="query" path="/QueryAllComments.jsp" />
+      <forward name="delete" path="/AdminDeleteComments.jsp" />
+    </action>
+    <action
+      path="/adminDeleteComments"
+      type="struts.action.AdminDeleteCommentsAction"
+      validate="false">
+      <forward name="success" path="/queryAllComments.do" />
+    </action>
+   </action-mappings>
+		<message-resources parameter="com.yourcompany.struts.ApplicationResources" />
+
+</struts-config>
+
+
